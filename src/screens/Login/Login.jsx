@@ -12,11 +12,9 @@ const Login = () => {
 export default Login
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
+  container: { 
     alignItems: 'center',
-    backgroundColor: '#cec3c3',
+    backgroundColor: '#7ac48f',
   },
   title: {
     fontSize: 24,

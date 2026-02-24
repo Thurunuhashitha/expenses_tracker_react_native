@@ -12,11 +12,9 @@ const Expenses = () => {
 export default Expenses
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
+  container: {  
     alignItems: 'center',
-    backgroundColor: '#121212',
+    backgroundColor: '#7cc3e4', 
   },
   title: {
     fontSize: 24,
