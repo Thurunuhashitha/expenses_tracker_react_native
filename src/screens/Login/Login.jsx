@@ -1,31 +1,49 @@
 import { View, Text, StyleSheet, TextInput, Button, Alert } from 'react-native'
 import React from 'react'
 import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 const Login = () => {
 
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('') 
-  const [token, setToken] = React.useState('')
 
-  function handleLogin() {
-    if(!email || !password) {
-      Alert.alert('Error', 'Please fill all fields');
-      return;
+  const handleLogin = async () => {
+    if (!email || !password) {
+      Alert.alert('Error', 'Please fill all fields')
+      return
     }
-    axios.post('https://api.thurunu.me/api/auth/login', {
-      email: email,
-      password: password,
-  })
-  .then(response => {
-    console.log('Login successful:', response.data); 
-    setToken(response.data.token);
-    Alert.alert('Success', 'Login successful');
-  })
-  .catch(error => {
-    Alert.alert('Error', 'Login failed. Please check your credentials.');
-    console.error('Login error:', error);
-  });
+
+    try {
+      const response = await axios.post(
+        'https://api.thurunu.me/api/auth/login',
+        { email,password},
+         { headers: { 'Content-Type': 'application/json' } }
+      )
+
+      const accessToken = response.data.token 
+      if (!accessToken) {
+        Alert.alert('Login Error', 'Token not returned from server');
+        return;
+      } 
+       // Save token for later use
+      await AsyncStorage.setItem('authToken', accessToken);
+
+      Alert.alert('Login Success', 'You Have Successfully Logged In');
+
+    }
+    catch (error) {
+      if (error.response) {
+        console.log('Server error:', error.response.data);
+        Alert.alert('Login Error', error.response.data.message || 'Please Try Again');
+      } else if (error.request) {
+        console.log('No response received:', error.request);
+        Alert.alert('Network Error', 'No response from server. Check your connection.');
+      } else {
+        console.log('Axios error:', error.message);
+        Alert.alert('Login Error', error.message);
+      }
+    }
   }
   return (
     <View style={styles.container}>
@@ -37,7 +55,6 @@ const Login = () => {
       <View>
         <Button title='Login' onPress={handleLogin} />
       </View> 
-      <Text style={{color:'white', marginTop: 20}}>Token: {token}</Text>
     </View>
   )
 }
@@ -45,8 +62,8 @@ const Login = () => {
 export default Login
 
 const styles = StyleSheet.create({
-  container: { 
-    alignItems: 'center', 
+  container: {
+    alignItems: 'center',
   },
   title: {
     fontSize: 24,
@@ -55,7 +72,7 @@ const styles = StyleSheet.create({
   },
   input: {
     width: 200,
-    height: 40, 
+    height: 40,
     borderRadius: 5,
     borderWidth: 1,
     borderColor: '#ccc',
