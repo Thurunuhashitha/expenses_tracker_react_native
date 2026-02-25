@@ -3,6 +3,7 @@ import { View } from "react-native";
 import Login from './src/screens/Login/Login'
 // import Register from './src/screens/Register/Register'
 import GetAllExpenses from "./src/screens/Expenses/GetAllExpenses";
+import DeleteExpenses from "./src/screens/Expenses/DeleteExpenses";
 
 function App() {
   return (
@@ -10,7 +11,8 @@ function App() {
       {/* <Register /> */}
       {/* <Login /> */}
       {/* <AddExpenses /> */}
-      <GetAllExpenses />
+      {/* <GetAllExpenses /> */}
+      <DeleteExpenses />
     </View>
   );
 }
