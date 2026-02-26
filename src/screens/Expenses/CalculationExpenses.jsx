@@ -11,6 +11,7 @@ import {
 } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import axios from 'axios'
+import NavBar from '../../components/NavBar'
 
 const CalculationExpenses = () => {
   const [month, setMonth] = useState('')
@@ -127,6 +128,7 @@ const CalculationExpenses = () => {
 
   return (
     <View style={styles.container}>
+      <NavBar />
       <Text style={styles.title}>Expense Calculation</Text>
 
       <TextInput
