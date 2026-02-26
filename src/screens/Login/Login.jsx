@@ -2,14 +2,14 @@ import { View, Text, StyleSheet, TextInput, Button, Alert } from 'react-native'
 import React from 'react'
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { useNavigation } from '@react-navigation/native';
+import { Link, useNavigation } from '@react-navigation/native';
 
 const Login = () => {
 
   const navigation = useNavigation();
 
   const [email, setEmail] = React.useState('')
-  const [password, setPassword] = React.useState('') 
+  const [password, setPassword] = React.useState('')
 
   const handleLogin = async () => {
     if (!email || !password) {
@@ -20,16 +20,16 @@ const Login = () => {
     try {
       const response = await axios.post(
         'https://api.thurunu.me/api/auth/login',
-        { email,password},
-         { headers: { 'Content-Type': 'application/json' } }
+        { email, password },
+        { headers: { 'Content-Type': 'application/json' } }
       )
 
-      const accessToken = response.data.token 
+      const accessToken = response.data.token
       if (!accessToken) {
         Alert.alert('Login Error', 'Token not returned from server');
         return;
-      } 
-       // Save token for later use
+      }
+      // Save token for later use
       await AsyncStorage.setItem('authToken', accessToken);
       Alert.alert('Login Success', 'You Have Successfully Logged In');
       navigation.navigate('GetAllExpenses');
@@ -57,7 +57,13 @@ const Login = () => {
       </View>
       <View>
         <Button title='Login' onPress={handleLogin} />
-      </View> 
+        <Text
+          style={{ marginTop: 10, color: 'blue' }}
+          onPress={() => navigation.navigate('Register')}
+        >
+          Don't have an account? Register
+        </Text>
+      </View>
     </View>
   )
 }
