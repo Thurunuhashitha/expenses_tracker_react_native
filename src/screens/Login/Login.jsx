@@ -2,8 +2,11 @@ import { View, Text, StyleSheet, TextInput, Button, Alert } from 'react-native'
 import React from 'react'
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import { useNavigation } from '@react-navigation/native';
 
 const Login = () => {
+
+  const navigation = useNavigation();
 
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('') 
@@ -28,8 +31,8 @@ const Login = () => {
       } 
        // Save token for later use
       await AsyncStorage.setItem('authToken', accessToken);
-
       Alert.alert('Login Success', 'You Have Successfully Logged In');
+      navigation.navigate('GetAllExpenses');
 
     }
     catch (error) {

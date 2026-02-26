@@ -10,6 +10,7 @@ import {
 } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import axios from 'axios'
+import NavBar from '../../components/NavBar'
 
 const GetAllExpenses = () => {
   const [expenses, setExpenses] = useState([])
@@ -61,6 +62,7 @@ const GetAllExpenses = () => {
 
   return (
     <View style={styles.container}>
+      <NavBar />
       <Text style={styles.title}>All Expenses</Text>
 
       <Button title="Get All Expenses" onPress={handleGetAll} />

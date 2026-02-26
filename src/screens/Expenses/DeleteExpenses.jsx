@@ -2,6 +2,7 @@ import { Alert, Button, StyleSheet, Text, TextInput, View } from 'react-native'
 import React, { useState } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import axios from 'axios'
+import NavBar from '../../components/NavBar'
 
 const DeleteExpenses = () => {
   const [id, setId] = useState('')
@@ -36,6 +37,7 @@ const DeleteExpenses = () => {
 
   return (
     <View style={styles.container}>
+      <NavBar />
       <Text style={styles.title}>Delete Expense</Text>
 
       <TextInput

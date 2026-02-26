@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { View, Text, TextInput, Button, FlatList, StyleSheet, Image } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import axios from 'axios'
+import NavBar from '../../components/NavBar'
 
 const SearchExpenses = () => {
     const [date, setDate] = useState('')
@@ -65,6 +66,7 @@ const SearchExpenses = () => {
 
     return (
         <View style={styles.container}>
+            <NavBar />
             <Text style={styles.title}>Search Expenses</Text>
 
             <TextInput

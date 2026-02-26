@@ -14,6 +14,7 @@ import DateTimePicker from '@react-native-community/datetimepicker'
 import { launchImageLibrary } from 'react-native-image-picker'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import axios from 'axios'
+import NavBar from '../../components/NavBar'
 
 const AddExpenses = () => {
   const [reason, setReason] = useState('')
@@ -122,6 +123,7 @@ const AddExpenses = () => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
+      <NavBar />
       <Text style={styles.title}>Add Expense</Text>
 
       <TextInput

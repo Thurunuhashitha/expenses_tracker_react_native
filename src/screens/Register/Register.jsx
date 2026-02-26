@@ -1,8 +1,11 @@
 import { View, Text, StyleSheet, TextInput, Button, Alert } from 'react-native'
 import React from 'react'
 import axios from 'axios';
+import { useNavigation } from '@react-navigation/native';
 
 const Register = () => {
+
+  const navigation = useNavigation();
 
   const [name, setName] = React.useState('');
   const [email, setEmail] = React.useState('');
@@ -21,6 +24,7 @@ const Register = () => {
       .then(response => {
         console.log('Success:', response.data);
         Alert.alert('Success', 'Registration successful');
+        navigation.navigate('Login');
       })
       .catch(error => {
         console.log('Error:', error.response?.data || error.message);
