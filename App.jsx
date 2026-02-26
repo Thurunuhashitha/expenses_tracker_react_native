@@ -5,6 +5,7 @@ import Login from './src/screens/Login/Login'
 import GetAllExpenses from "./src/screens/Expenses/GetAllExpenses";
 import DeleteExpenses from "./src/screens/Expenses/DeleteExpenses";
 import SearchExpenses from "./src/screens/Expenses/SearchExpensers";
+import CalculationExpenses from "./src/screens/Expenses/CalculationExpenses";
 
 function App() {
   return (
@@ -14,7 +15,8 @@ function App() {
       {/* <AddExpenses /> */}
       {/* <GetAllExpenses /> */}
       {/* <DeleteExpenses /> */}
-      <SearchExpenses />
+      {/* <SearchExpenses /> */}
+      <CalculationExpenses />
     </View>
   );
 }
